@@ -1,0 +1,30 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
+
+try:
+    browser = webdriver.Chrome()
+    browser.get("https://www.google.ru/")
+    # открываем ссылку
+    
+    input1 = browser.find_element(By.CSS_SELECTOR, ".gLFyf")
+    input1.send_keys("Byndyusoft")
+    # вводим в поиск и нажимаем
+
+    btn = browser.find_element(By.CSS_SELECTOR, ".gNO89b")
+    btn.click()
+    #клик по кнопке поиска
+
+    link = browser.find_element(By.CSS_SELECTOR, ".LC20lb").click()
+    # переходим по ссылке
+
+
+    button = browser.find_element(By.CSS_SELECTOR, ".btn.btn--lg.btn--info.js-popup-callback-show")
+    browser.execute_script("return arguments[0].scrollIntoView(true);", button)
+    button.click()
+    # ищем и нажимаем кнопку
+
+    tg = browser.find_element(By.CSS_SELECTOR, ".popup-callback__contacts-tg")
+    tg_check = tg.get_attribute("http://t.me/alexanderbyndyu")
+    assert tg_check == "true"
+    # проверяем соответствие
